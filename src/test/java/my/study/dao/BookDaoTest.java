@@ -81,4 +81,10 @@ public class BookDaoTest {
     void deleteById() {
         bookDao.deleteById(108);
     }
+
+    @Test
+    void findAllByTitleOrAuthorLike(){
+        List<Book> books = bookDao.findAllByTitleOrAuthorLike("慈欣");
+        System.out.println(books);
+    }
 }

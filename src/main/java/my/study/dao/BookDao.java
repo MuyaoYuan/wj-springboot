@@ -53,5 +53,8 @@ public interface BookDao {
     @Delete("delete from book where id=#{id}")
     void deleteById(int id);
 
+    @Select("select * from book where title like concat('%',#{keyword},'%') or author like concat('%',#{keyword},'%')")
+    List<Book> findAllByTitleOrAuthorLike(String keyword);
+
 //    List<Book> findAllByTitleLikeOrAuthorLike(String keyword1, String keyword2);
 }

@@ -47,7 +47,6 @@ public class BookServiceImpl implements BookService  {
         }
     }
 
-
     @Override
     public void deleteById(int id) {
         bookDao.deleteById(id);
@@ -57,6 +56,11 @@ public class BookServiceImpl implements BookService  {
     public List<Book> listByCategory(int cid) {
         Category category = categoryService.getById(cid);
         return bookDao.findAllByCategory(category);
+    }
+
+    @Override
+    public List<Book> Search(String keyword) {
+        return bookDao.findAllByTitleOrAuthorLike(keyword);
     }
 
 //    @Override

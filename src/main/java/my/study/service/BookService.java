@@ -13,4 +13,5 @@ public interface BookService{
     void saveOrUpdate(Book book);
     void deleteById(int id);
     List<Book> listByCategory(int cid);
+    List<Book> Search(String keyword);
 }
