@@ -3,9 +3,13 @@ package my.study.entity;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 //表名
 @TableName("book")
 public class Book {
@@ -20,6 +24,6 @@ public class Book {
     private String press;
     private String abs;
 
-//    private Category category;
-    private int cid;
+    private Category category;
+//    private int cid;
 }
