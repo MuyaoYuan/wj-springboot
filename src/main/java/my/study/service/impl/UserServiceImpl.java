@@ -27,7 +27,11 @@ public class UserServiceImpl extends ServiceImpl<UserDao, User> implements UserS
         HashMap<String,Object> map = new HashMap<>();
         map.put("username",username);
         List<User> userList = userDao.selectByMap(map);
-        return userList.get(0);
+        if(userList.size()!=0){
+            return userList.get(0);
+        } else {
+            return null;
+        }
     }
 
     @Override
