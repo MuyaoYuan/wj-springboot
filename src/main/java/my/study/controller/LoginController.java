@@ -14,10 +14,7 @@ import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.HtmlUtils;
 
 @Controller
@@ -33,6 +30,7 @@ public class LoginController {
         username = HtmlUtils.htmlEscape(username);
         Subject subject = SecurityUtils.getSubject();
         UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(username, requestUser.getPassword());
+        usernamePasswordToken.setRememberMe(true);
         try {
             subject.login(usernamePasswordToken);
             return ResultFactory.buildSuccessResult(username);
@@ -71,5 +69,22 @@ public class LoginController {
         userService.save(user);
 
         return ResultFactory.buildSuccessResult(user);
+    }
+
+    @CrossOrigin
+    @GetMapping("/api/logout")
+    @ResponseBody
+    public Result logout(){
+        Subject subject = SecurityUtils.getSubject();
+        subject.logout();
+        String message = "成功登出";
+        return ResultFactory.buildSuccessResult(message);
+    }
+
+    @CrossOrigin
+    @ResponseBody
+    @GetMapping(value = "/api/authentication")
+    public String authentication(){
+        return "身份认证成功";
     }
 }
